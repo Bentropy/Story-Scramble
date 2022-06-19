@@ -11,6 +11,8 @@ public class GameStateFSM : MonoBehaviour
         get { return currentState; }
     }
 
+    public Canvas can;
+
     public readonly WelcomeState GameWelcomeState = new WelcomeState();
     public readonly TeacherWelcomeState GameTeacherWelcomeState = new TeacherWelcomeState();
     public readonly TeacherIdeasState GameTeacherIdeasState = new TeacherIdeasState();
@@ -25,7 +27,6 @@ public class GameStateFSM : MonoBehaviour
 
     void Start()
     {
-        
         TransitionToState(GameWelcomeState);
     }
 

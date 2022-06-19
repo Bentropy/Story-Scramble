@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class OrientationState : BaseState
 {
+    private static GameObject orientationScreen;
+
     public override void EnterState(GameStateFSM context)
     {
-        throw new System.NotImplementedException("OrientationState.EnterState");
+        orientationScreen = Resources.Load("OrientationStateScreen") as GameObject;
+        GameObject.Instantiate(orientationScreen, context.can.transform, false);
+        //throw new System.NotImplementedException("OrientationState.EnterState");
     }
 
     public override void Update(GameStateFSM context)
@@ -16,6 +20,7 @@ public class OrientationState : BaseState
 
     public override void ExitState()
     {
-        throw new System.NotImplementedException("OrientationState.ExitState");
+        Object.Destroy(orientationScreen);
+        //throw new System.NotImplementedException("OrientationState.ExitState");
     }
 }
