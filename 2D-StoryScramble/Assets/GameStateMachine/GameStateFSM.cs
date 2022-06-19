@@ -11,61 +11,36 @@ public class GameStateFSM : MonoBehaviour
         get { return currentState; }
     }
 
-    //public readonly StructureUnselectedState UnselectedState = new StructureUnselectedState();
-    //public readonly StructureSelectedState SelectedState = new StructureSelectedState();
-    //public readonly StructureScaleState ScaleState = new StructureScaleState();
-    //public readonly StructureRotateState RotateState = new StructureRotateState();
     public readonly WelcomeState GameWelcomeState = new WelcomeState();
+    public readonly TeacherWelcomeState GameTeacherWelcomeState = new TeacherWelcomeState();
+    public readonly TeacherIdeasState GameTeacherIdeasState = new TeacherIdeasState();
     public readonly OrientationState GameOrientationState = new OrientationState();
+    public readonly GenreSelectionState GameGenreSelectionState = new GenreSelectionState();
+    public readonly GenreOneIntroState GameGenreOneIntroState = new GenreOneIntroState();
+    public readonly GenreTwoIntroState GameGenreTwoIntroState = new GenreTwoIntroState();
+    public readonly GenreThreeIntroState GameGenreThreeIntroState = new GenreThreeIntroState();
+    public readonly GenreOnePlotSelectionState GameGenreOnePlotSelectionState = new GenreOnePlotSelectionState();
+    public readonly GenreTwoPlotSelectionState GameGenreTwoPlotSelectionState = new GenreTwoPlotSelectionState();
+    public readonly GenreThreePlotSelectionState GameGenreThreePlotSelectionState = new GenreThreePlotSelectionState();
 
     void Start()
     {
+        
         TransitionToState(GameWelcomeState);
     }
 
     public void TransitionToState(BaseState state)
     {
+        if(currentState != null)
+        {
+            currentState.ExitState();
+        }
         currentState = state;
         currentState.EnterState(this);
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        currentState.OnCollisionEnter(this);
     }
 
     void Update()
     {
         currentState.Update(this);
-    }
-
-    void OnMouseUp()
-    {
-        currentState.OnMouseUp(this);
-    }
-
-    public void OnMouseOver()
-    {
-        currentState.OnMouseOver(this);
-    }
-
-    void OnMouseDrag()
-    {
-        currentState.OnMouseDrag(this);
-    }
-
-    void OnMouseExit()
-    {
-        currentState.OnMouseExit(this);
-    }
-
-    void OnMouseDown()
-    {
-        currentState.OnMouseDown(this);
-    }
-
-    void OnMouseEnter()
-    {
-        currentState.OnMouseEnter(this);
     }
 }
